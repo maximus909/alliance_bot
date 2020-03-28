@@ -38,36 +38,8 @@ def saveLocation(update, context):
     context.bot.send_message(chat_id, message + ' - processing with saveLocation.')
     try:
         if isForward(update) and 'You found hidden location' in message: 
-            #print(len(re.findall(r'(Tower|Fort|Dubious Ruins|Trusted Ruins|Collapsed Mine|Unfinished Mine|Abandoned Mine)\s(lvl\.\d{2})', message)))
-            #context.bot.send_message(chat_id,'Correct.')
-            location = re.search(r'(Tower|Fort|Dubious Ruins|Trusted Ruins|Collapsed Mine|Unfinished Mine|Abandoned Mine)\s(lvl\.\d{2})', message).group(0)
-            locationType = re.search(r'(Tower|Fort|Dubious Ruins|Trusted Ruins|Collapsed Mine|Unfinished Mine|Abandoned Mine)\s(lvl\.\d{2})', message).group(1)
-            locationLvl = re.search(r'(Tower|Fort|Dubious Ruins|Trusted Ruins|Collapsed Mine|Unfinished Mine|Abandoned Mine)\s(lvl\.\d{2})', message).group(2)
-            locationCode = re.search(r'simple combination: (.+)', message).group(1)
-            if location in LOCATIONS and LOCATIONS[location] == locationCode:
-                context.bot.send_message(chat_id, 'Location is already in the database: <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
-            elif location in LOCATIONS and LOCATIONS[location] != locationCode:
-                LOCATIONS[location] = locationCode
-                updateLocation(LOCATIONS)
-                context.bot.send_message(chat_id, 'Location code updated. <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
-            elif location not in LOCATIONS:
-                LOCATIONS[location] = locationCode
-                updateLocation(LOCATIONS)
-                context.bot.send_message(chat_id, 'New location added: <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
-            #context.bot.send_message(chat_id, location +' '+locationCode)
-        elif isForward(update) and 'You found hidden headquarter' in message:
-            location = re.search(r'headquarter ([A-Za-z ]+)\n', message).group(1)
-            locationCode = re.search(r'simple combination: (.+)', message).group(1)
-            if location in LOCATIONS and LOCATIONS[location] == locationCode:
-                context.bot.send_message(chat_id, 'HQ is already in the database: <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
-            elif location in LOCATIONS and LOCATIONS[location] != locationCode:
-                LOCATIONS[location] = locationCode
-                updateLocation(LOCATIONS)
-                context.bot.send_message(chat_id, 'HQ code updated. <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
-            elif location not in LOCATIONS:
-                LOCATIONS[location] = locationCode
-                updateLocation(LOCATIONS)
-                context.bot.send_message(chat_id, 'New HQ added: <b>'+location+'</b> <code>'+locationCode+'</code>', parse_mode = 'HTML')
+            # some actions
+	    pass
         else:
             listLocations(update, context)
     except Exception:
@@ -105,46 +77,11 @@ def listLocations(update, context):
     context.bot.send_message(chat_id, message + ' - processing with listLocations.')
     try:
         if message == '/ls':
-            text = 'Glory:\n'
-            for location in LOCATIONS:
-                if 'Tower' in location or 'Fort' in location:
-                    text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            text = text + '\nMagic:\n'            
-            for location in LOCATIONS:
-                if 'Ruins' in location:
-                    text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            text = text + '\nResources:\n'
-            for location in LOCATIONS:
-                if 'Mine' in location:
-                    text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            text = text + '\nHQ:\n'
-            for location in LOCATIONS:
-                if not 'lvl' in location:
-                    text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            context.bot.send_message(chat_id, text, parse_mode = 'HTML')
+            # some actions
+	    pass
         elif len(re.findall(r'/ls(\s|_)(glory|magic|res|hq)', message)) == 1:
-            locationType = re.search(r'/ls(\s|_)(glory|magic|res|hq)', message).group(2)
-            if locationType == 'glory':
-                text = 'Glory:\n'
-                for location in LOCATIONS:
-                    if 'Tower' in location or 'Fort' in location:
-                        text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            if locationType == 'magic':
-                text = 'Magic:\n'
-                for location in LOCATIONS:
-                    if 'Ruins' in location:
-                        text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            if locationType == 'res':
-                text = 'Resources:\n'
-                for location in LOCATIONS:
-                    if 'Mine' in location:
-                        text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            if locationType == 'hq':
-                text = 'HQ:\n'
-                for location in LOCATIONS:
-                    if not 'lvl' in location:
-                        text = text + black_small_square + '<b>' + location + '</b> <code>' + LOCATIONS[location] + '</code>\n'
-            context.bot.send_message(chat_id, text, parse_mode = 'HTML')
+            # some other actions
+	    pass
         else:
             removeLocation(update, context)
     except Exception:
@@ -158,13 +95,8 @@ def intoLink(update, context):
     #print(message + ' - intoLink in action.')
     context.bot.send_message(chat_id, message + ' - processing with intoLink.')
     if checkString(message) != None:
-        ls = [x.group() for x in re.finditer(r'/ga_(atk|def)(\s|_)([a-zA-Z0-9]){6}', message)]
-        lsLinks = []
-        for i in range(len(ls)):
-            lsLinks.append('<a href=\'https://t.me/share/url?url='+ls[i]+'\'>'+ls[i]+'</a>')
-        for i in range(len(ls)):
-            message = message.replace(ls[i], lsLinks[i])
-        context.bot.send_message(chat_id, message, parse_mode = 'HTML')
+	# some actions
+	pass
     else:
         saveLocation(update, context)
 
